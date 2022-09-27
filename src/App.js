@@ -1,10 +1,15 @@
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import TablePage from "./pages/TablePage";
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/table" element={<TablePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
