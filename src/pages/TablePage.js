@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Table from "../components/Table";
 
-import { mockData } from "../data/mock-data";
-
 const TablePage = () => {
+  const [loadedTable, setLoadedTable] = useState();
+
+  // Load table data on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/misc");
+
+        const tableData = response.data;
+
+        setLoadedTable(tableData);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const createHandler = () => {
+    navigate("/create");
+  };
+
   return (
     <React.Fragment>
-      {mockData.map((tableData) => (
-        <div key={tableData.id}>
-          <Table tableData={tableData} />
-        </div>
-      ))}
+      <button onClick={createHandler}>+</button>
+
+      {/* Only render Table when loadedTable exist */}
+      {loadedTable && (
+        <Table tableData={loadedTable} category="Miscellaneous" />
+      )}
     </React.Fragment>
   );
 };

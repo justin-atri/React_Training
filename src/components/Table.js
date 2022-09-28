@@ -5,17 +5,16 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const Table = ({ tableData }) => {
-  const [data, setData] = useState([...tableData.data]);
+const Table = ({ tableData, category }) => {
+  const [data] = useState([...tableData]);
 
   const columnHelper = createColumnHelper();
 
   const columns = [
     columnHelper.group({
-      id: () => <span>{tableData.category}</span>,
-      header: () => <span>{tableData.category}</span>,
+      id: () => <span>{category}</span>,
+      header: () => <span>{category}</span>,
       columns: [
         columnHelper.accessor("title", { header: null, size: 150 }),
         columnHelper.accessor("amount", { header: null, size: 60 }),
@@ -28,12 +27,6 @@ const Table = ({ tableData }) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const navigate = useNavigate();
-
-  const editHandler = () => {
-    navigate("/edit");
-  };
 
   return (
     <React.Fragment>

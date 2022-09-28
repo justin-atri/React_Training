@@ -1,0 +1,78 @@
+{
+  "food": [
+    {
+      "id": 1,
+      "title": "Starbucks",
+      "amount": 4.75
+    },
+    {
+      "id": 2,
+      "title": "Pho Cha Dao",
+      "amount": 8.64
+    },
+    {
+      "id": 3,
+      "title": "85 Degree",
+      "amount": 16.58
+    },
+    {
+      "title": "Lemonade",
+      "amount": "1.37",
+      "category": "Food",
+      "id": 4
+    },
+    {
+      "title": "Chipotle",
+      "amount": "10.49",
+      "category": "food",
+      "id": 5
+    }
+  ],
+  "misc": [
+    {
+      "id": 1,
+      "title": "Body wash",
+      "amount": 10.25
+    },
+    {
+      "id": 2,
+      "title": "Pegboard",
+      "amount": 30.26
+    },
+    {
+      "id": 3,
+      "title": "iPhone",
+      "amount": 395.12
+    },
+    {
+      "title": "Plant",
+      "amount": "5",
+      "category": "Miscellaneous",
+      "id": 4
+    },
+    {
+      "title": "Speaker",
+      "amount": "55.48",
+      "category": "misc",
+      "id": 5
+    },
+    {
+      "title": "Tissue",
+      "amount": "8.45",
+      "category": "misc",
+      "id": 6
+    },
+    {
+      "title": "Headphone",
+      "amount": "88.99",
+      "category": "misc",
+      "id": 7
+    },
+    {
+      "title": "Wireless Charger",
+      "amount": "10.99",
+      "category": "misc",
+      "id": 8
+    }
+  ]
+}
