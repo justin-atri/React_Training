@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const UpdatePage = () => {
-  const itemId = useParams().itemId;
-  const category = useParams().category;
+  // deconstruct useParams
+  const { itemId, category } = useParams();
   const navigate = useNavigate();
 
   const {

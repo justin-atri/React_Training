@@ -14,7 +14,7 @@ const Table = ({ tableData, category }) => {
 
   const columns = [
     columnHelper.group({
-      id: () => <span>{category}</span>,
+      id: `${category}`, // id should be string
       header: () => <span>{category}</span>,
       columns: [
         columnHelper.accessor("title", {
