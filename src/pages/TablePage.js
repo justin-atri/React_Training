@@ -1,39 +1,52 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Table from "../components/Table";
 
 const TablePage = () => {
-  const [loadedTable, setLoadedTable] = useState();
+  const [loadedMiscTable, setLoadedMiscTable] = useState();
+  const [loadedFoodTable, setLoadedFoodTable] = useState();
 
-  // Load table data on mount
+  // Load Misc table on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/misc");
 
-        const tableData = response.data;
+        const miscTable = response.data;
 
-        setLoadedTable(tableData);
+        setLoadedMiscTable(miscTable);
       } catch (error) {}
     };
 
     fetchData();
   }, []);
 
-  const navigate = useNavigate();
+  // Load Food table on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/food");
 
-  const createHandler = () => {
-    navigate("/create");
-  };
+        const foodTable = response.data;
+
+        setLoadedFoodTable(foodTable);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>
-      <button onClick={createHandler}>+</button>
+      <Link to="/create">
+        <button>+</button>
+      </Link>
 
       {/* Only render Table when loadedTable exist */}
-      {loadedTable && (
-        <Table tableData={loadedTable} category="Miscellaneous" />
+      {loadedFoodTable && <Table tableData={loadedFoodTable} category="Food" />}
+      {loadedMiscTable && (
+        <Table tableData={loadedMiscTable} category="Miscellaneous" />
       )}
     </React.Fragment>
   );

@@ -5,6 +5,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Table = ({ tableData, category }) => {
   const [data] = useState([...tableData]);
@@ -16,8 +17,24 @@ const Table = ({ tableData, category }) => {
       id: () => <span>{category}</span>,
       header: () => <span>{category}</span>,
       columns: [
-        columnHelper.accessor("title", { header: null, size: 150 }),
-        columnHelper.accessor("amount", { header: null, size: 60 }),
+        columnHelper.accessor("title", {
+          header: null,
+          size: 150,
+          cell: ({ cell, row }) => (
+            <Link
+              to={`/${row.original.category}/${row.original.id}`}
+            >{`${cell.getValue()}`}</Link>
+          ),
+        }),
+        columnHelper.accessor("amount", {
+          header: null,
+          size: 60,
+          cell: ({ cell, row }) => (
+            <Link
+              to={`/${row.original.category}/${row.original.id}`}
+            >{`${cell.getValue()}`}</Link>
+          ),
+        }),
       ],
     }),
   ];

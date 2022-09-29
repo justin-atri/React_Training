@@ -33,8 +33,8 @@ const CreatePage = () => {
           alert(err.message);
           throw err;
         });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      alert(err);
     }
   };
 
