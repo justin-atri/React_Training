@@ -11,7 +11,7 @@ const TablePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/misc");
+        const response = await axios.get("/misc");
 
         const miscTable = response.data;
 
@@ -26,7 +26,7 @@ const TablePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/food");
+        const response = await axios.get("/food");
 
         const foodTable = response.data;
 

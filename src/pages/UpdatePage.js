@@ -20,9 +20,7 @@ const UpdatePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/${category}/${itemId}`
-        );
+        const response = await axios.get(`/${category}/${itemId}`);
         const item = response.data;
 
         setLoadedItem(item);
@@ -37,7 +35,7 @@ const UpdatePage = () => {
   const updateHandler = (data) => {
     try {
       axios
-        .patch(`http://localhost:8000/${category}/${itemId}`, {
+        .patch(`/${category}/${itemId}`, {
           ...data,
         })
         .then((res) => {
@@ -53,7 +51,7 @@ const UpdatePage = () => {
 
   const deleteHandler = () => {
     axios
-      .delete(`http://localhost:8000/${category}/${itemId}`)
+      .delete(`/${category}/${itemId}`)
       .then(() => {
         navigate("/table");
       })

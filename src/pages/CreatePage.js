@@ -21,7 +21,7 @@ const CreatePage = () => {
 
     try {
       axios
-        .post(`http://localhost:8000/${data.category}`, {
+        .post(`/${data.category}`, {
           ...data,
         })
         .then((res) => {
