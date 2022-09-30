@@ -1,0 +1,13 @@
+// Include any default variable overrides here
+
+// MY THEME COLORS
+$blue: #3f51b5;
+$yellow: #f5a623;
+
+// Import all of the bootstrap default scss
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+// Then add additional custom code here
+.hidden {
+  display: none;
+}

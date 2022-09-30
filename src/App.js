@@ -3,6 +3,8 @@ import CreatePage from "./pages/CreatePage";
 import LandingPage from "./pages/LandingPage";
 import TablePage from "./pages/TablePage";
 import UpdatePage from "./pages/UpdatePage";
+// Using compiled SCSS (path setting from "live sass format")
+import "./css/main.min.css";
 
 function App() {
   return (

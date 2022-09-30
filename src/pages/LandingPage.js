@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
 import landingImg from "../assets/undraw_join_re_w1lh.svg";
 
 const LandingPage = () => {
@@ -51,7 +52,7 @@ const LandingPage = () => {
             />
             Business
           </label>
-          <button>Click to Start</button>
+          <Button color="primary">Click to Start</Button>
         </form>
       </section>
     </React.Fragment>
