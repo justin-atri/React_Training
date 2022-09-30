@@ -19,20 +19,22 @@ const Table = ({ tableData, category }) => {
       columns: [
         columnHelper.accessor("title", {
           header: null,
-          size: 150,
           cell: ({ cell, row }) => (
-            <Link
-              to={`/${row.original.category}/${row.original.id}`}
-            >{`${cell.getValue()}`}</Link>
+            <div className="cell-wrapper">
+              <Link to={`/${row.original.category}/${row.original.id}`}>
+                {`${cell.getValue()}`}
+              </Link>
+            </div>
           ),
         }),
         columnHelper.accessor("amount", {
           header: null,
-          size: 60,
           cell: ({ cell, row }) => (
-            <Link
-              to={`/${row.original.category}/${row.original.id}`}
-            >{`${cell.getValue()}`}</Link>
+            <div className="cell-wrapper">
+              <Link to={`/${row.original.category}/${row.original.id}`}>
+                {`${cell.getValue()}`}
+              </Link>
+            </div>
           ),
         }),
       ],
@@ -53,7 +55,7 @@ const Table = ({ tableData, category }) => {
             {reactTable.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} style={{ width: header.getSize() }}>
+                  <th key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(

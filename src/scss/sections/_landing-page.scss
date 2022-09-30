@@ -1,23 +1,12 @@
-// MY THEME COLORS
-$blue: #3f51b5;
-$blue-light: #5262bc;
-$yellow: #f5a623;
-$black: #464c52;
-$white: #ffffff;
-$grey: #f8f8f8;
-$red: #ff3b30;
-$red-dark: #c9463f;
-$red-light: #edb2b9;
-$green: #34c759;
-$green-dark: #3c9e54;
-$green-light: #daf3c0;
+// IMPORT UTILITIES
+@use "../utilities/colors" as colors;
 
 // CSS
 .trace-background {
   width: 100vw;
   height: 100vh;
-  background-color: $blue;
-  color: $white;
+  background-color: colors.$blue;
+  color: colors.$white;
 }
 
 .trace-logo {
@@ -36,7 +25,7 @@ $green-light: #daf3c0;
 
   h1 {
     margin: 1.2rem;
-    color: $white;
+    color: colors.$white;
     font-weight: 700;
     letter-spacing: 1.5px;
     font-size: 3rem;
@@ -67,7 +56,7 @@ $green-light: #daf3c0;
       align-items: center;
       input {
         appearance: none;
-        border: 2px solid $grey;
+        border: 2px solid colors.$grey;
         border-radius: 50%;
         width: 2rem;
         height: 2rem;
@@ -81,7 +70,7 @@ $green-light: #daf3c0;
         height: 1.2rem;
         transform: scale(0);
         transition: 120ms transform ease-in-out;
-        box-shadow: inset 1em 1em $white;
+        box-shadow: inset 1em 1em colors.$white;
         border-radius: 50%;
       }
       input:checked::before {
@@ -102,9 +91,9 @@ $green-light: #daf3c0;
     text-transform: uppercase;
     letter-spacing: 1px;
 
-    color: $yellow;
+    color: colors.$yellow;
     background: transparent;
-    border: 0.05rem solid $yellow;
+    border: 0.05rem solid colors.$yellow;
     border-radius: 8px;
 
     padding: 0.5rem 1rem;
@@ -113,7 +102,7 @@ $green-light: #daf3c0;
   }
   button:hover {
     transition: all 0.15s ease-in-out;
-    color: $white;
-    background: $yellow;
+    color: colors.$white;
+    background: colors.$yellow;
   }
 }

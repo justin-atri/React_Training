@@ -1,3 +1,11 @@
+// CALL bootstrap-custom
+@use "bootstrap-custom";
+
+// CALL SECTIONS
+@use "sections/landing-page";
+@use "sections/table-page";
+
+// GLOBAL
 body {
   font-family: "Lato";
 }
@@ -5,9 +13,3 @@ body {
 .hidden {
   display: none;
 }
-
-// IMPORT bootstrap-custom
-@use "bootstrap-custom";
-
-// IMPORT SECTIONS
-@use "sections/landing-page";

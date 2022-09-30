@@ -1,0 +1,125 @@
+// IMPORT UTILITIES
+@use "../utilities/colors" as colors;
+
+// CSS
+.table-page {
+  &__container {
+    width: 100vw;
+    height: 100vh;
+    background-color: colors.$blue;
+    color: colors.$white;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    .topline {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 1.2px;
+    }
+
+    .header {
+      width: 17rem;
+
+      margin-top: 8rem;
+      margin-left: 2rem;
+
+      h2 {
+        border-bottom: 2px solid colors.$white;
+        padding: 0 0.3rem 0.5rem;
+
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+      }
+    }
+
+    .table-list {
+      &__container {
+        border-radius: 50px 50px 0 0;
+        width: 100%;
+        height: 60%;
+
+        position: absolute;
+        bottom: 0;
+
+        background-color: colors.$white;
+        color: colors.$black;
+
+        button {
+          position: absolute;
+          right: 2.5rem;
+          top: 2.5rem;
+
+          font-size: 1.2rem;
+          font-weight: 600;
+
+          color: colors.$yellow;
+          background: transparent;
+          border: 0.05rem solid colors.$yellow;
+          border-radius: 50%;
+
+          padding: 0.5rem 1rem;
+
+          cursor: pointer;
+        }
+        button:hover {
+          transition: all 0.15s ease-in-out;
+          color: colors.$white;
+          background: colors.$yellow;
+        }
+
+        .table-list__wrapper {
+          margin-top: 7rem;
+          display: flex;
+          gap: 4rem;
+          padding: 0 2.5rem;
+
+          width: 100%;
+          height: 70%;
+
+          table {
+            width: 16rem;
+
+            thead {
+              font-size: 1.2rem;
+              letter-spacing: 1.2px;
+
+              th {
+                padding-bottom: 0.5rem;
+                padding-left: 0.7rem;
+              }
+            }
+            tbody {
+              td {
+                width: 60%;
+              }
+              .cell-wrapper {
+                width: 90%;
+
+                border-radius: 2.5px;
+                border-bottom: 1.5px solid colors.$black;
+
+                padding-left: 0.5rem;
+                padding-bottom: 0.2rem;
+
+                a {
+                  text-decoration: none;
+                  color: colors.$black;
+                  letter-spacing: 1.1px;
+                  font-weight: 300;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

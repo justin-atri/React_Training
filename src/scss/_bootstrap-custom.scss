@@ -1,4 +1,5 @@
 // Include any default variable overrides here
 
 // Import all of the bootstrap default scss
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// @import is depricated. use @use instead
+@use "../../node_modules/bootstrap/scss/bootstrap.scss";
