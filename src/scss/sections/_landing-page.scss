@@ -1,0 +1,119 @@
+// MY THEME COLORS
+$blue: #3f51b5;
+$blue-light: #5262bc;
+$yellow: #f5a623;
+$black: #464c52;
+$white: #ffffff;
+$grey: #f8f8f8;
+$red: #ff3b30;
+$red-dark: #c9463f;
+$red-light: #edb2b9;
+$green: #34c759;
+$green-dark: #3c9e54;
+$green-light: #daf3c0;
+
+// CSS
+.trace-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: $blue;
+  color: $white;
+}
+
+.trace-logo {
+  border: 3px solid #000;
+  filter: invert(99%) sepia(36%) saturate(84%) hue-rotate(223deg)
+    brightness(116%) contrast(100%);
+
+  img {
+    width: 5rem;
+  }
+}
+
+.header_container {
+  align-items: center;
+  padding: 5rem 0;
+
+  h1 {
+    margin: 1.2rem;
+    color: $white;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 3rem;
+  }
+}
+
+.form_container {
+  position: relative;
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .survey_container {
+    width: 50%;
+    margin-bottom: 10rem;
+  }
+  .checkbox_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    label {
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: 2em auto;
+      gap: 1.2em;
+      align-items: center;
+      input {
+        appearance: none;
+        border: 2px solid $grey;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+
+        display: grid;
+        place-content: center;
+      }
+      input::before {
+        content: "";
+        width: 1.2rem;
+        height: 1.2rem;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em $white;
+        border-radius: 50%;
+      }
+      input:checked::before {
+        transform: scale(1);
+      }
+    }
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    display: inline-block;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    color: $yellow;
+    background: transparent;
+    border: 0.05rem solid $yellow;
+    border-radius: 8px;
+
+    padding: 0.5rem 1rem;
+
+    cursor: pointer;
+  }
+  button:hover {
+    transition: all 0.15s ease-in-out;
+    color: $white;
+    background: $yellow;
+  }
+}
