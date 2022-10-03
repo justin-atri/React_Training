@@ -70,6 +70,7 @@ const UpdatePage = () => {
                 id="title"
                 name="title"
                 defaultValue={loadedItem.title}
+                data-cy="title-input"
                 {...register("title", {
                   required: "Please update your title",
                 })}
@@ -86,6 +87,7 @@ const UpdatePage = () => {
                 name="amount"
                 step="0.01"
                 defaultValue={loadedItem.amount}
+                data-cy="amount-input"
                 {...register("amount", {
                   required: "Please update your amount",
                 })}
@@ -95,12 +97,14 @@ const UpdatePage = () => {
               )}
             </label>
 
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} data-cy="update-btn">
               Update
             </button>
           </form>
 
-          <button onClick={deleteHandler}>Delete</button>
+          <button onClick={deleteHandler} data-cy="delete-btn">
+            Delete
+          </button>
         </>
       )}
     </React.Fragment>

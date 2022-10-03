@@ -97,7 +97,7 @@ const LandingPage = () => {
                 </label>
               </div>
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} data-cy="begin-trace">
               Begin Trace!
             </button>
           </form>

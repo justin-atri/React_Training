@@ -56,6 +56,7 @@ const CreatePage = () => {
                     id="title"
                     name="title"
                     placeholder="Enter your title here"
+                    data-cy="title-input"
                     {...register("title", {
                       required: "Please type in your title",
                     })}
@@ -74,6 +75,7 @@ const CreatePage = () => {
                     name="amount"
                     step="0.01"
                     placeholder="0.00"
+                    data-cy="amount-input"
                     {...register("amount", {
                       required: "Please type in your amount",
                     })}
@@ -92,6 +94,7 @@ const CreatePage = () => {
                       id="Food"
                       value="food"
                       onClick={categoryHandler}
+                      data-cy="food-radio-input"
                       {...register("category", {
                         required: "Please choose your category",
                       })}
@@ -109,12 +112,17 @@ const CreatePage = () => {
                     id="Miscellaneous"
                     value="misc"
                     onClick={categoryHandler}
+                    data-cy="misc-radio-input"
                     {...register("category")}
                   />
                   <span>Miscellaneous</span>
                 </label>
               </div>
-              <button type="submit" disabled={isSubmitting}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                data-cy="submit-btn"
+              >
                 Submit
               </button>
             </form>

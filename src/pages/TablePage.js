@@ -14,7 +14,7 @@ const TablePage = () => {
         <section>
           <div className="table-list__container">
             <Link to="/create">
-              <Button>+</Button>
+              <Button data-cy="create-btn">+</Button>
             </Link>
 
             {/* pass in the paramiter foward slash together in this case */}
