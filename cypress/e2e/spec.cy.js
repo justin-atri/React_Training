@@ -5,8 +5,9 @@ describe("Trace CRUD Testing", () => {
     cy.get("[data-cy='begin-trace']").click();
   });
 
-  it("create new table item", () => {
+  it.only("create new table item", () => {
     cy.visit("http://localhost:3000/table");
+    // figure url to intercept
 
     cy.get("[data-cy='create-btn']").click();
 
@@ -20,7 +21,26 @@ describe("Trace CRUD Testing", () => {
 
     cy.get("[data-cy='food-radio-input']").click();
 
+    cy.intercept("POST", "/food", {
+      body: {
+        amount: "8.99",
+        category: "food",
+        id: 400,
+        title: "Subway",
+      },
+    }).as("createNewRecord");
+
     cy.get("[data-cy='submit-btn']").click();
+
+    cy.wait("@createNewRecord").then((request) => {
+      console.log(request.request.body);
+
+      expect(request.request.body).to.deep.equal({
+        amount: "8.99",
+        category: "food",
+        title: "Subway",
+      });
+    });
 
     // Check if new item is added to the table
     cy.get("table").contains("Subway");
