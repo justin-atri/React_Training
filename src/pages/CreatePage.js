@@ -44,65 +44,83 @@ const CreatePage = () => {
 
   return (
     <React.Fragment>
-      <h1>{category}</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="title">
-          Title
-          <input
-            type="text"
-            id="title"
-            name="title"
-            placeholder="Type your title here"
-            {...register("title", {
-              required: "Please type in your title",
-            })}
-          />
-          {errors.title && <small role="alert">{errors.title.message}</small>}
-        </label>
-        <label htmlFor="amount">
-          $
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            step="0.01"
-            {...register("amount", { required: "Please type in your amount" })}
-          />
-          {errors.amount && <small role="alert">{errors.amount.message}</small>}
-        </label>
-        <div>
-          <label htmlFor="Food">
-            {errors.category && (
-              <small role="alert">{errors.category.message}</small>
-            )}
-            <input
-              type="radio"
-              name="category"
-              id="Food"
-              value="food"
-              onClick={categoryHandler}
-              {...register("category", {
-                required: "Please choose your category",
-              })}
-            />
-            Food
-          </label>
-          <label htmlFor="Miscellaneous">
-            <input
-              type="radio"
-              name="category"
-              id="Miscellaneous"
-              value="misc"
-              onClick={categoryHandler}
-              {...register("category")}
-            />
-            Miscellaneous
-          </label>
+      <section>
+        <div className="blue-background">
+          <div className="create-card">
+            <h1>{category}</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <label htmlFor="title">
+                <div className="error-style">
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter your title here"
+                    {...register("title", {
+                      required: "Please type in your title",
+                    })}
+                  />
+                  {errors.title && (
+                    <small role="alert">{errors.title.message}</small>
+                  )}
+                </div>
+              </label>
+              <label htmlFor="amount">
+                <div className="dollar-sign">$</div>
+                <div className="error-style">
+                  <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    step="0.01"
+                    placeholder="0.00"
+                    {...register("amount", {
+                      required: "Please type in your amount",
+                    })}
+                  />
+                  {errors.amount && (
+                    <small role="alert">{errors.amount.message}</small>
+                  )}
+                </div>
+              </label>
+              <div className="radio-container">
+                <label htmlFor="Food" className="radio-btn">
+                  <div className="error-style">
+                    <input
+                      type="radio"
+                      name="category"
+                      id="Food"
+                      value="food"
+                      onClick={categoryHandler}
+                      {...register("category", {
+                        required: "Please choose your category",
+                      })}
+                    />
+                    <span>Food</span>
+                    {errors.category && (
+                      <small role="alert">{errors.category.message}</small>
+                    )}
+                  </div>
+                </label>
+                <label htmlFor="Miscellaneous" className="radio-btn">
+                  <input
+                    type="radio"
+                    name="category"
+                    id="Miscellaneous"
+                    value="misc"
+                    onClick={categoryHandler}
+                    {...register("category")}
+                  />
+                  <span>Miscellaneous</span>
+                </label>
+              </div>
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <button type="submit" disabled={isSubmitting}>
-          Create
-        </button>
-      </form>
+      </section>
     </React.Fragment>
   );
 };
