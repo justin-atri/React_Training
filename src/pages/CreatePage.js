@@ -26,7 +26,7 @@ const CreatePage = () => {
           url: url,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           navigate("/table");
         })
         .catch((err) => {
@@ -56,15 +56,15 @@ const CreatePage = () => {
                   <input
                     type="radio"
                     name="category"
-                    id="Food"
-                    value="food"
+                    id="food"
+                    value="Food"
                     onClick={categoryHandler}
                     data-cy="food-radio-input"
                     {...register("category", {
                       required: "Please choose your category",
                     })}
                   />
-                  <label htmlFor="Food">Food</label>
+                  <label htmlFor="food">Food</label>
                   {errors.category && (
                     <small role="alert">{errors.category.message}</small>
                   )}
