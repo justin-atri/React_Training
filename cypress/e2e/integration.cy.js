@@ -1,9 +1,59 @@
 describe("Trace Integration Testing", () => {
   it("create page integration using intercept", () => {
+    // HTTP INTERCEPTS
+    // GET call on Table Page
+    cy.intercept("GET", "/food", {
+      body: [
+        {
+          title: "Intercept 1",
+          amount: "000",
+          category: "Food",
+          url: "food",
+          id: 111,
+        },
+        {
+          title: "Intercept 2",
+          amount: "000",
+          category: "Food",
+          url: "food",
+          id: 222,
+        },
+      ],
+    });
+    cy.intercept("GET", "/misc", {
+      body: [
+        {
+          title: "Intercept 1",
+          amount: "000",
+          url: "misc",
+          category: "Miscellaneous",
+          id: 111,
+        },
+        {
+          title: "Intercept 2",
+          amount: "000",
+          url: "misc",
+          category: "Miscellaneous",
+          id: 222,
+        },
+      ],
+    });
+    // POST call on Create Page
+    cy.intercept("POST", "/food", {
+      body: {
+        amount: "8.99",
+        category: "Food",
+        url: "food",
+        title: "Subway",
+      },
+    }).as("createNewRecord");
+
+    // Table Page
     cy.visit("http://localhost:3000/table");
 
     cy.get("[data-cy='create-btn']").click();
 
+    // Create Page
     cy.get("[data-cy='title-input']")
       .type("Subway")
       .should("have.value", "Subway");
@@ -14,22 +64,11 @@ describe("Trace Integration Testing", () => {
 
     cy.get("[data-cy='food-radio-input']").click();
 
-    // Intercept request before submit
-    cy.intercept("POST", "/food", {
-      body: {
-        amount: "8.99",
-        category: "Food",
-        url: "food",
-        title: "Subway",
-      },
-    }).as("createNewRecord");
-
     cy.get("[data-cy='submit-btn']").click();
 
-    // Check request result is correct
+    // Check is request result correct
     cy.wait("@createNewRecord").then((request) => {
-      console.log(request.request.body);
-
+      // console.log(request.request.body);
       expect(request.request.body).to.deep.equal({
         amount: "8.99",
         category: "Food",
@@ -41,30 +80,74 @@ describe("Trace Integration Testing", () => {
     cy.url().should("include", "/table");
   });
 
-  it.only("edit page integration using intercept", () => {
-    cy.visit("http://localhost:3000/table");
-
-    // Getting DOM detached error. Need to delay Cypress.
-    cy.wait(3000);
-
-    cy.get("table").contains("icecream").click();
-
-    cy.get("[data-cy='title-input']")
-      .clear()
-      .type("Haagen Dazs")
-      .should("have.value", "Haagen Dazs");
-
-    cy.get("[data-cy='amount-input']")
-      .clear()
-      .type("4.79")
-      .should("have.value", "4.79");
-
-    cy.intercept("PATCH", "/food/7", {
+  it("edit page integration using intercept", () => {
+    // HTTP INTERCEPTS
+    // GET call on Table Page
+    cy.intercept("GET", "/food", {
+      body: [
+        {
+          title: "icecream",
+          amount: "1000",
+          category: "Food",
+          url: "food",
+          id: 89,
+        },
+        {
+          title: "intercept food 2",
+          amount: "9.00",
+          category: "Food",
+          url: "food",
+          id: 8,
+        },
+      ],
+    }).as("foodItems");
+    cy.intercept("GET", "/misc", {
+      body: [
+        {
+          title: "Intercept misc 1",
+          amount: "10",
+          category: "Food",
+          url: "food",
+          id: 11,
+        },
+        {
+          title: "Intercept misc 2",
+          amount: "9.00",
+          category: "Food",
+          url: "food",
+          id: 13,
+        },
+      ],
+    }).as("miscItems");
+    // GET call on Edit Page
+    cy.intercept("GET", "/food/89", {
+      body: {
+        title: "icecream",
+        amount: "1000",
+      },
+    });
+    // PATCH call on Edit Page
+    cy.intercept("PATCH", "/food/89", {
       body: {
         amount: "4.79",
         title: "Haagen Dazs",
       },
     }).as("editRecord");
+
+    // TABLE PAGE
+    cy.visit("/table");
+
+    cy.get("table").contains("icecream").click();
+
+    // EDIT PAGE
+    cy.get("[data-cy='title-input']")
+      .clear()
+      .type("Haagen Dazs")
+      .should("have.value", "Haagen Dazs");
+    cy.get("[data-cy='amount-input']")
+      .clear()
+      .type("4.79")
+      .should("have.value", "4.79");
 
     cy.get("[data-cy='update-btn']").click();
 
