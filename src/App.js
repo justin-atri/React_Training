@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/table" element={<TablePage />} />
         <Route path="/create" element={<CreatePage />} />
-        <Route path="/:category/:itemId" element={<UpdatePage />} />
+        <Route path="/:categoryURL/:itemId" element={<UpdatePage />} />
       </Routes>
     </BrowserRouter>
   );

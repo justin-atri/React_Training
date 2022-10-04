@@ -21,7 +21,7 @@ const Table = ({ tableData, category }) => {
           header: null,
           cell: ({ cell, row }) => (
             <div className="cell-wrapper">
-              <Link to={`/${row.original.category}/${row.original.id}`}>
+              <Link to={`/${row.original.url}/${row.original.id}`}>
                 {`${cell.getValue()}`}
               </Link>
             </div>
@@ -31,7 +31,7 @@ const Table = ({ tableData, category }) => {
           header: null,
           cell: ({ cell, row }) => (
             <div className="cell-wrapper">
-              <Link to={`/${row.original.category}/${row.original.id}`}>
+              <Link to={`/${row.original.url}/${row.original.id}`}>
                 {`${cell.getValue()}`}
               </Link>
             </div>

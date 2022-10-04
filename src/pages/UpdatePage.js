@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 
 const UpdatePage = () => {
   // deconstruct useParams
-  const { itemId, category } = useParams();
+  const { itemId, categoryURL } = useParams();
+
   const navigate = useNavigate();
 
   const {
@@ -20,22 +21,22 @@ const UpdatePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/${category}/${itemId}`);
+        const response = await axios.get(`/${categoryURL}/${itemId}`);
         const item = response.data;
 
-        setLoadedItem(item);
+        setLoadedItem(response.data);
 
         console.log(item);
       } catch (error) {}
     };
 
     fetchData();
-  }, [itemId, category]);
+  }, [itemId, categoryURL]);
 
   const updateHandler = (data) => {
     try {
       axios
-        .patch(`/${category}/${itemId}`, {
+        .patch(`/${categoryURL}/${itemId}`, {
           ...data,
         })
         .then((res) => {
@@ -51,7 +52,7 @@ const UpdatePage = () => {
 
   const deleteHandler = () => {
     axios
-      .delete(`/${category}/${itemId}`)
+      .delete(`/${categoryURL}/${itemId}`)
       .then(() => {
         navigate("/table");
       })
@@ -60,53 +61,74 @@ const UpdatePage = () => {
 
   return (
     <React.Fragment>
-      {loadedItem && (
-        <>
-          <form onSubmit={handleSubmit(updateHandler)}>
-            <label htmlFor="title">
-              Title
-              <input
-                type="text"
-                id="title"
-                name="title"
-                defaultValue={loadedItem.title}
-                data-cy="title-input"
-                {...register("title", {
-                  required: "Please update your title",
-                })}
-              />
-              {errors.title && (
-                <small role="alert">{errors.title.message}</small>
-              )}
-            </label>
-            <label htmlFor="amount">
-              $
-              <input
-                type="number"
-                id="amount"
-                name="amount"
-                step="0.01"
-                defaultValue={loadedItem.amount}
-                data-cy="amount-input"
-                {...register("amount", {
-                  required: "Please update your amount",
-                })}
-              />
-              {errors.amount && (
-                <small role="alert">{errors.amount.message}</small>
-              )}
-            </label>
+      <div className="blue-background">
+        <div className="item-card">
+          {loadedItem && (
+            <>
+              <h1>{loadedItem.category}</h1>
+              <form onSubmit={handleSubmit(updateHandler)}>
+                <div className="text-row">
+                  <div className="title-input-wrapper">
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      defaultValue={loadedItem.title}
+                      placeholder="Enter your title here"
+                      data-cy="title-input"
+                      {...register("title", {
+                        required: "Please update your title",
+                      })}
+                    />
+                    {errors.title && (
+                      <small role="alert">{errors.title.message}</small>
+                    )}
+                  </div>
+                  <div className="amount-input-wrapper">
+                    <span>
+                      $
+                      <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        step="0.01"
+                        defaultValue={loadedItem.amount}
+                        placeholder="0.00"
+                        data-cy="amount-input"
+                        {...register("amount", {
+                          required: "Please update your amount",
+                        })}
+                      />
+                    </span>
+                    {errors.amount && (
+                      <small role="alert">{errors.amount.message}</small>
+                    )}
+                  </div>
+                </div>
 
-            <button type="submit" disabled={isSubmitting} data-cy="update-btn">
-              Update
-            </button>
-          </form>
-
-          <button onClick={deleteHandler} data-cy="delete-btn">
-            Delete
-          </button>
-        </>
-      )}
+                <div className="btn-row">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="my-btn btn-yellow"
+                    data-cy="update-btn"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    onClick={deleteHandler}
+                    className="my-btn btn-red"
+                    data-cy="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
     </React.Fragment>
   );
 };

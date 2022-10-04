@@ -1,0 +1,40 @@
+// IMPORT UTILITIES
+@use "../utilities/colors";
+
+// BUTTONS
+.my-btn {
+  display: inline-block;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 13px;
+  &:hover {
+    transition: all 0.15s ease-in-out;
+    transform: scale(0.99);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+.btn-red {
+  color: colors.$white;
+  background-color: colors.$red;
+  &:hover {
+    background-color: colors.$red-dark;
+  }
+}
+.btn-yellow {
+  color: colors.$white;
+  background-color: colors.$yellow;
+  &:hover {
+    background-color: colors.$yellow-dark;
+  }
+}
+.btn-blue {
+  color: colors.$white;
+  background-color: colors.$blue;
+  &:hover {
+    background-color: colors.$blue-dark;
+  }
+}

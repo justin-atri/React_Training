@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 const CreatePage = () => {
   const [category, setCategory] = useState("Choose Category");
+  const [url, setUrl] = useState();
 
   const navigate = useNavigate();
 
@@ -18,11 +19,11 @@ const CreatePage = () => {
   const onSubmit = async (data) => {
     // DEV PURPOSE: Check disabled submit button while processing data submission
     // await new Promise((r) => setTimeout(r, 1000));
-
     try {
       axios
-        .post(`/${data.category}`, {
+        .post(`/${url}`, {
           ...data,
+          url: url,
         })
         .then((res) => {
           console.log(res);
@@ -39,18 +40,50 @@ const CreatePage = () => {
   };
 
   const categoryHandler = (e) => {
-    setCategory(e.target.id);
+    setCategory(e.target.value);
+    setUrl(e.target.id);
   };
 
   return (
     <React.Fragment>
       <section>
         <div className="blue-background">
-          <div className="create-card">
+          <div className="item-card">
             <h1>{category}</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label htmlFor="title">
-                <div className="error-style">
+              <div className="radio-row">
+                <div className="radio-input-wrapper">
+                  <input
+                    type="radio"
+                    name="category"
+                    id="Food"
+                    value="food"
+                    onClick={categoryHandler}
+                    data-cy="food-radio-input"
+                    {...register("category", {
+                      required: "Please choose your category",
+                    })}
+                  />
+                  <label htmlFor="Food">Food</label>
+                  {errors.category && (
+                    <small role="alert">{errors.category.message}</small>
+                  )}
+                </div>
+                <div className="radio-input-wrapper">
+                  <input
+                    type="radio"
+                    name="category"
+                    id="misc"
+                    value="Miscellaneous"
+                    onClick={categoryHandler}
+                    data-cy="misc-radio-input"
+                    {...register("category")}
+                  />
+                  <label htmlFor="misc">Miscellaneous</label>
+                </div>
+              </div>
+              <div className="text-row">
+                <div className="title-input-wrapper">
                   <input
                     type="text"
                     id="title"
@@ -65,66 +98,37 @@ const CreatePage = () => {
                     <small role="alert">{errors.title.message}</small>
                   )}
                 </div>
-              </label>
-              <label htmlFor="amount">
-                <div className="dollar-sign">$</div>
-                <div className="error-style">
-                  <input
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    step="0.01"
-                    placeholder="0.00"
-                    data-cy="amount-input"
-                    {...register("amount", {
-                      required: "Please type in your amount",
-                    })}
-                  />
+                <div className="amount-input-wrapper">
+                  <span>
+                    $
+                    <input
+                      type="number"
+                      id="amount"
+                      name="amount"
+                      step="0.01"
+                      placeholder="0.00"
+                      data-cy="amount-input"
+                      {...register("amount", {
+                        required: "Please type in your amount",
+                      })}
+                    />
+                  </span>
                   {errors.amount && (
                     <small role="alert">{errors.amount.message}</small>
                   )}
                 </div>
-              </label>
-              <div className="radio-container">
-                <label htmlFor="Food" className="radio-btn">
-                  <div className="error-style">
-                    <input
-                      type="radio"
-                      name="category"
-                      id="Food"
-                      value="food"
-                      onClick={categoryHandler}
-                      data-cy="food-radio-input"
-                      {...register("category", {
-                        required: "Please choose your category",
-                      })}
-                    />
-                    <span>Food</span>
-                    {errors.category && (
-                      <small role="alert">{errors.category.message}</small>
-                    )}
-                  </div>
-                </label>
-                <label htmlFor="Miscellaneous" className="radio-btn">
-                  <input
-                    type="radio"
-                    name="category"
-                    id="Miscellaneous"
-                    value="misc"
-                    onClick={categoryHandler}
-                    data-cy="misc-radio-input"
-                    {...register("category")}
-                  />
-                  <span>Miscellaneous</span>
-                </label>
               </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                data-cy="submit-btn"
-              >
-                Submit
-              </button>
+
+              <div className="btn-row">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="my-btn btn-blue"
+                  data-cy="submit-btn"
+                >
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         </div>

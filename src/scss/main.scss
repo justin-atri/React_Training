@@ -5,9 +5,13 @@
 @use "sections/landing-page";
 @use "sections/table-page";
 @use "sections/create-page";
+@use "sections/edit-page";
 
 // IMPORT UTILITIES
 @use "./utilities/colors";
+// IMPORT COMPONENTS
+@use "./components/buttons";
+@use "./components/item-card";
 
 // GLOBAL
 body {

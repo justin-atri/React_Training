@@ -1,4 +1,3 @@
-import { Button } from "reactstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import TableList from "../components/TableList";
@@ -14,7 +13,7 @@ const TablePage = () => {
         <section>
           <div className="table-list__container">
             <Link to="/create">
-              <Button data-cy="create-btn">+</Button>
+              <button data-cy="create-btn">+</button>
             </Link>
 
             {/* pass in the paramiter foward slash together in this case */}
