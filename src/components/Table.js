@@ -6,8 +6,9 @@ import {
 } from "@tanstack/react-table";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 
-const Table = ({ tableData, category }) => {
+const Table = ({ tableData, category, isPositive }) => {
   const [data] = useState([...tableData]);
 
   const columnHelper = createColumnHelper();
@@ -15,14 +16,25 @@ const Table = ({ tableData, category }) => {
   const columns = [
     columnHelper.group({
       id: `${category}`, // id should be string
-      header: () => <span>{category}</span>,
+      header: () => (
+        <span style={{ fontSize: "1.6rem" }}>
+          {category}{" "}
+          {isPositive === "true" ? (
+            <HiTrendingUp style={{ color: "#3C9E54", marginTop: "-0.3rem" }} />
+          ) : (
+            <HiTrendingDown
+              style={{ color: "#C9463F", marginTop: "-0.3rem" }}
+            />
+          )}
+        </span>
+      ),
       columns: [
         columnHelper.accessor("title", {
           header: null,
           cell: ({ cell, row }) => (
             <div className="cell-wrapper">
               <Link to={`/${row.original.url}/${row.original.id}`}>
-                {`${cell.getValue()}`}
+                {`${cell.getValue()}`}{" "}
               </Link>
             </div>
           ),
@@ -32,7 +44,7 @@ const Table = ({ tableData, category }) => {
           cell: ({ cell, row }) => (
             <div className="cell-wrapper">
               <Link to={`/${row.original.url}/${row.original.id}`}>
-                {`${cell.getValue()}`}
+                $ {`${cell.getValue()}`}
               </Link>
             </div>
           ),

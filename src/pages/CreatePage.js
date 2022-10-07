@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import featherPen from "../assets/feather_pen.svg";
 
 const CreatePage = () => {
   const [category, setCategory] = useState("Choose Category");
@@ -48,6 +49,9 @@ const CreatePage = () => {
     <React.Fragment>
       <section>
         <div className="blue-background">
+          <div className="item-card-logo">
+            <img src={featherPen} alt="feather pen" />
+          </div>
           <div className="item-card">
             <h1>{category}</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,18 +60,30 @@ const CreatePage = () => {
                   <input
                     type="radio"
                     name="category"
-                    id="food"
-                    value="Food"
+                    id="income"
+                    value="Income"
                     onClick={categoryHandler}
                     data-cy="food-radio-input"
                     {...register("category", {
                       required: "Please choose your category",
                     })}
                   />
-                  <label htmlFor="food">Food</label>
+                  <label htmlFor="income">Income</label>
                   {errors.category && (
                     <small role="alert">{errors.category.message}</small>
                   )}
+                </div>
+                <div className="radio-input-wrapper">
+                  <input
+                    type="radio"
+                    name="category"
+                    id="food"
+                    value="Food"
+                    onClick={categoryHandler}
+                    data-cy="food-radio-input"
+                    {...register("category")}
+                  />
+                  <label htmlFor="food">Food</label>
                 </div>
                 <div className="radio-input-wrapper">
                   <input
@@ -110,6 +126,7 @@ const CreatePage = () => {
                       data-cy="amount-input"
                       {...register("amount", {
                         required: "Please type in your amount",
+                        setValueAs: (val) => Number(val).toFixed(2),
                       })}
                     />
                   </span>

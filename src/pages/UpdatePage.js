@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import featherPen from "../assets/feather_pen.svg";
 
 const UpdatePage = () => {
   // deconstruct useParams
@@ -24,9 +25,9 @@ const UpdatePage = () => {
         const response = await axios.get(`/${categoryURL}/${itemId}`);
         const item = response.data;
 
-        setLoadedItem(response.data);
+        setLoadedItem(item);
 
-        console.log(item);
+        // console.log(item);
       } catch (error) {}
     };
 
@@ -40,7 +41,7 @@ const UpdatePage = () => {
           ...data,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           navigate("/table");
         })
         .catch((err) => {
@@ -62,6 +63,9 @@ const UpdatePage = () => {
   return (
     <React.Fragment>
       <div className="blue-background">
+        <div className="item-card-logo">
+          <img src={featherPen} alt="feather pen" />
+        </div>
         <div className="item-card">
           {loadedItem && (
             <>
@@ -97,6 +101,7 @@ const UpdatePage = () => {
                         data-cy="amount-input"
                         {...register("amount", {
                           required: "Please update your amount",
+                          setValueAs: (val) => Number(val).toFixed(2),
                         })}
                       />
                     </span>

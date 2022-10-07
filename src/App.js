@@ -5,13 +5,16 @@ import TablePage from "./pages/TablePage";
 import UpdatePage from "./pages/UpdatePage";
 // Using compiled SCSS (path setting from "live sass format")
 import "./css/main.min.css";
+import { useState } from "react";
 
 function App() {
+  const [userName, setUserName] = useState("Unknown");
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/table" element={<TablePage />} />
+        <Route path="/" element={<LandingPage setUserName={setUserName} />} />
+        <Route path="/table" element={<TablePage userName={userName} />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/:categoryURL/:itemId" element={<UpdatePage />} />
       </Routes>

@@ -19,7 +19,7 @@
       right: 2rem;
       top: 2rem;
 
-      font-size: 1rem;
+      font-size: 1.5rem;
       font-weight: 300;
       letter-spacing: 1.2px;
     }
@@ -57,15 +57,16 @@
           right: 2.5rem;
           top: 2.5rem;
 
-          font-size: 1.2rem;
+          width: 5rem;
+          height: 5rem;
+          font-size: 3rem;
           font-weight: 600;
 
           color: colors.$yellow;
           background: transparent;
-          border: 0.05rem solid colors.$yellow;
+          border: 1.5px solid colors.$yellow;
           border-radius: 50%;
-
-          padding: 0.5rem 1rem;
+          padding-bottom: 8px;
 
           cursor: pointer;
         }
@@ -85,7 +86,7 @@
           height: 70%;
 
           table {
-            width: 16rem;
+            width: 22rem;
 
             thead {
               font-size: 1.2rem;
@@ -109,6 +110,13 @@
                 padding-left: 0.5rem;
                 padding-bottom: 0.2rem;
 
+                font-weight: 400;
+                font-size: 1.3rem;
+                :hover {
+                  // font-weight: 500;
+                  transition: all 0.15s ease-in-out;
+                  background-color: colors.$grey;
+                }
                 a {
                   text-decoration: none;
                   color: colors.$black;
@@ -121,5 +129,60 @@
         }
       }
     }
+  }
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+.table-total {
+  margin-top: auto;
+  font-size: 1.5rem;
+  color: colors.$black;
+  letter-spacing: 1.2px;
+}
+.overview-row {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3rem;
+  width: 80%;
+  .asset-box {
+    border-radius: 20px;
+    padding: 1rem 1.5rem 1rem 2rem;
+    box-shadow: 0 5px 5px 2px #2a337bf4;
+    position: relative;
+    .dollar-sign {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1rem;
+      font-style: italic;
+    }
+    span {
+      font-size: 1.8rem;
+      letter-spacing: 1.3px;
+    }
+    &:hover {
+      transition: all 0.15s ease-in-out;
+      transform: scale(1.01);
+    }
+  }
+  .green {
+    background-color: colors.$green-dark;
+  }
+  .red {
+    background-color: colors.$red-dark;
+  }
+  .blue {
+    background-color: colors.$blue-light;
+  }
+  .asset-title {
+    text-align: start;
+    margin-top: 0.4rem;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    color: colors.$grey;
   }
 }
