@@ -1,19 +1,85 @@
 {
-  "posts": [
+  "income": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "Amazon",
+      "amount": "132.54",
+      "category": "Income",
+      "url": "income",
+      "id": 1
+    },
+    {
+      "category": "Income",
+      "title": "eGift",
+      "amount": "300.00",
+      "url": "income",
+      "id": 2
+    },
+    {
+      "category": "Income",
+      "title": "One-time Credit",
+      "amount": "1004.55",
+      "url": "income",
+      "id": 3
     }
   ],
-  "comments": [
+  "food": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "Jersey Mikes",
+      "amount": "13.73",
+      "category": "Food",
+      "url": "food",
+      "id": 1
+    },
+    {
+      "title": "Bahn mi",
+      "amount": "8.25",
+      "category": "Food",
+      "url": "food",
+      "id": 8
+    },
+    {
+      "category": "Food",
+      "title": "Starbucks",
+      "amount": "17.53",
+      "url": "food",
+      "id": 9
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "misc": [
+    {
+      "title": "Mug",
+      "amount": "10.00",
+      "url": "misc",
+      "category": "Miscellaneous",
+      "id": 3
+    },
+    {
+      "title": "Honeywell Fan",
+      "amount": "35.84",
+      "url": "misc",
+      "category": "Miscellaneous",
+      "id": 4
+    },
+    {
+      "title": "Artificial Plant",
+      "amount": "4.79",
+      "url": "misc",
+      "category": "Miscellaneous",
+      "id": 5
+    },
+    {
+      "category": "Miscellaneous",
+      "title": "iPhone 14",
+      "amount": "799.00",
+      "url": "misc",
+      "id": 6
+    },
+    {
+      "category": "Miscellaneous",
+      "title": "Apple Watch SE",
+      "amount": "249.00",
+      "url": "misc",
+      "id": 7
+    }
+  ]
 }
